@@ -1,0 +1,18 @@
+version: '3.8'
+
+volumes:
+  nzbget:
+
+services:
+  app:
+    image: linuxserver/nzbget
+    restart: always
+    ports:
+      - 6789:6789
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - nzbget:/config
+      - /data/NAS/downloads:/downloads
+    environment:
+      - PUID=900
+      - PGID=900
